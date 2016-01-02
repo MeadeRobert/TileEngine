@@ -9,7 +9,7 @@ import java.util.LinkedList;
 
 public class Main extends Applet implements Runnable, KeyListener
 {
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 
 	private static final long serialVersionUID = -6800175946442857266L;
 
@@ -112,9 +112,9 @@ public class Main extends Applet implements Runnable, KeyListener
 		{
 			if (DEBUG)
 			{
-				if (c.getX() >= x * zoom && c.getX() <= x + width - Chunk.chunkSize)
+				if (c.getX() >= x && c.getX() <= x + width - Chunk.chunkSize)
 				{
-					if (c.getY() >= y * zoom && c.getY() <= y + height - Chunk.chunkSize)
+					if (c.getY() >= y && c.getY() <= y + height - Chunk.chunkSize)
 					{
 						c.paint(g);
 					}
@@ -122,9 +122,9 @@ public class Main extends Applet implements Runnable, KeyListener
 			}
 			else
 			{
-				if (c.getX() >= x * zoom - Chunk.chunkSize && c.getX() <= x + width)
+				if (c.getX() >= x - Chunk.chunkSize && c.getX() <= x + width)
 				{
-					if (c.getY() >= y * zoom - Chunk.chunkSize && c.getY() <= y + height)
+					if (c.getY() >= y - Chunk.chunkSize && c.getY() <= y + height)
 					{
 						c.paint(g);
 					}
@@ -132,7 +132,7 @@ public class Main extends Applet implements Runnable, KeyListener
 			}
 		}
 
-		if (DEBUG)
+		if (true)
 		{
 			g.drawString("Pos: " + x + "," + y, 10, 20);
 			g.drawString("Keys: " + keys.toString(), 10, 40);
@@ -157,7 +157,6 @@ public class Main extends Applet implements Runnable, KeyListener
 	public void keyTyped(KeyEvent arg0)
 	{
 		// TODO Auto-generated method stub
-
 	}
 
 	// Functional methods
@@ -177,7 +176,6 @@ public class Main extends Applet implements Runnable, KeyListener
 			y -= moveStep * stepMultiplier;
 		else if (isPressed('s') || isPressed('S'))
 			y += moveStep * stepMultiplier;
-
 		// manage zoom
 		if (isPressed('q') || isPressed('Q'))
 		{
