@@ -64,19 +64,19 @@ public class Tile
 		if (DEBUG && c.getX() == x && c.getY() == y)
 		{
 			g.setColor(Color.RED);
-			g.fillRect(x - Main.main.getX(), y - Main.main.getY(), (int) (TILE_SIZE * Main.scale), (int) (TILE_SIZE * Main.scale));
+			g.fillRect(x - Main.main.getX(), y - Main.main.getY(), (int) (TILE_SIZE * Main.zoom), (int) (TILE_SIZE * Main.zoom));
 		}
 		else
 		{
 			g.setColor(Color.BLUE);
 			if(texture != null)
 			{
-				g.drawImage(texture, x - Main.main.getX(), y - Main.main.getY(), (int) (TILE_SIZE * Main.scale), (int) (TILE_SIZE * Main.scale),
+				g.drawImage(texture, x - Main.main.getX(), y - Main.main.getY(), (int) (TILE_SIZE * Main.zoom), (int) (TILE_SIZE * Main.zoom),
 						null);
 			}
 			else
 			{
-				g.drawRect(x - Main.main.getX(), y - Main.main.getY(), (int) (TILE_SIZE * Main.scale), (int) (TILE_SIZE * Main.scale));
+				g.drawRect(x - Main.main.getX(), y - Main.main.getY(), (int) (TILE_SIZE * Main.zoom), (int) (TILE_SIZE * Main.zoom));
 			}
 		}
 	}

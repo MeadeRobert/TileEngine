@@ -22,7 +22,9 @@ public class Main extends Applet implements Runnable, KeyListener
 	private Image ii;
 	private Thread thread = new Thread(this);
 	public static Main main;
-	public static float scale = 1.0f;
+	public static float zoom = 1.0f;
+	public static float minZoom = .5f;
+	public static float maxZoom = 1.5f;
 
 	// other vars
 	// -------------------------------------------------------------------------------
@@ -48,11 +50,11 @@ public class Main extends Applet implements Runnable, KeyListener
 	{
 		int x = 0;
 		int y = 0;
-		int chunkSize = (int) (Chunk.tileSize * Tile.TILE_SIZE * scale);
-		for (int i = 0; i < width / (Chunk.tileSize * Tile.TILE_SIZE * scale); i++)
+		int chunkSize = (int) (Chunk.tileSize * Tile.TILE_SIZE * zoom);
+		for (int i = 0; i < width / (Chunk.tileSize * Tile.TILE_SIZE * zoom); i++)
 		{
 			y = 0;
-			for (int j = 0; j < height / (Chunk.tileSize * Tile.TILE_SIZE * scale); j++)
+			for (int j = 0; j < height / (Chunk.tileSize * Tile.TILE_SIZE * zoom); j++)
 			{
 				chunks.add(new Chunk(x, y, i, j));
 				Chunk.chunkSize = chunkSize;
@@ -81,7 +83,6 @@ public class Main extends Applet implements Runnable, KeyListener
 	@Override
 	public void run()
 	{
-
 		while (true)
 		{
 			manageKeyboardUI();
@@ -111,9 +112,9 @@ public class Main extends Applet implements Runnable, KeyListener
 		{
 			if (DEBUG)
 			{
-				if (c.getX() >= x * scale && c.getX() <= x + width - Chunk.chunkSize)
+				if (c.getX() >= x * zoom && c.getX() <= x + width - Chunk.chunkSize)
 				{
-					if (c.getY() >= y * scale && c.getY() <= y + height - Chunk.chunkSize)
+					if (c.getY() >= y * zoom && c.getY() <= y + height - Chunk.chunkSize)
 					{
 						c.paint(g);
 					}
@@ -121,9 +122,9 @@ public class Main extends Applet implements Runnable, KeyListener
 			}
 			else
 			{
-				if (c.getX() >= x * scale - Chunk.chunkSize && c.getX() <= x + width)
+				if (c.getX() >= x * zoom - Chunk.chunkSize && c.getX() <= x + width)
 				{
-					if (c.getY() >= y * scale - Chunk.chunkSize && c.getY() <= y + height)
+					if (c.getY() >= y * zoom - Chunk.chunkSize && c.getY() <= y + height)
 					{
 						c.paint(g);
 					}
@@ -136,7 +137,7 @@ public class Main extends Applet implements Runnable, KeyListener
 			g.drawString("Pos: " + x + "," + y, 10, 20);
 			g.drawString("Keys: " + keys.toString(), 10, 40);
 			g.drawString("FPS: " + calcFPS(), 10, 60);
-			g.drawString("Zoom: " + scale, 10, 80);
+			g.drawString("Zoom: " + zoom, 10, 80);
 		}
 	}
 
@@ -180,30 +181,30 @@ public class Main extends Applet implements Runnable, KeyListener
 		// manage zoom
 		if (isPressed('q') || isPressed('Q'))
 		{
-			if (scale < 2.0)
+			if (zoom < maxZoom)
 			{
-				scale += .01;
-				scale = scale * 100;
-				scale = Math.round(scale);
-				scale /= 100;
+				zoom += .01;
+				zoom = zoom * 100;
+				zoom = Math.round(zoom);
+				zoom /= 100;
 				for (Chunk chunk : chunks)
 				{
-					Chunk.chunkSize = (int) (Chunk.tileSize * Tile.TILE_SIZE * scale);
+					Chunk.chunkSize = (int) (Chunk.tileSize * Tile.TILE_SIZE * zoom);
 					chunk.update();
 				}
 			}
 		}
 		else if (isPressed('e') || isPressed('E'))
 		{
-			if (scale > 0.1)
+			if (zoom > minZoom)
 			{
-				scale -= .01;
-				scale = scale * 100;
-				scale = Math.round(scale);
-				scale /= 100;
+				zoom -= .01;
+				zoom = zoom * 100;
+				zoom = Math.round(zoom);
+				zoom /= 100;
 				for (Chunk chunk : chunks)
 				{
-					Chunk.chunkSize = (int) (Chunk.tileSize * Tile.TILE_SIZE * scale);
+					Chunk.chunkSize = (int) (Chunk.tileSize * Tile.TILE_SIZE * zoom);
 					chunk.update();
 				}
 			}
@@ -211,10 +212,10 @@ public class Main extends Applet implements Runnable, KeyListener
 		// reset zoom
 		if (isPressed('r') || isPressed('R'))
 		{
-			scale = 1.0f;
+			zoom = 1.0f;
 			for (Chunk chunk : chunks)
 			{
-				Chunk.chunkSize = (int) (Chunk.tileSize * Tile.TILE_SIZE * scale);
+				Chunk.chunkSize = (int) (Chunk.tileSize * Tile.TILE_SIZE * zoom);
 				chunk.update();
 			}
 		}

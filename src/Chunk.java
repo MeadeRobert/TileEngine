@@ -27,8 +27,8 @@ public class Chunk
 		{
 			for (int c = 0; c < tileSize; c++)
 			{
-				tiles[r][c].setX(x + r * (int) (Tile.TILE_SIZE * Main.scale));
-				tiles.clone()[r][c].setY(y + c * (int) (Tile.TILE_SIZE * Main.scale));
+				tiles[r][c].setX(x + r * (int) (Tile.TILE_SIZE * Main.zoom));
+				tiles.clone()[r][c].setY(y + c * (int) (Tile.TILE_SIZE * Main.zoom));
 			}
 		}
 	}
@@ -46,8 +46,8 @@ public class Chunk
 			for (int c = 0; c < tileSize; c++)
 			{
 				tiles[r][c] = new Tile();
-				tiles[r][c].setX(x + r * (int) (Tile.TILE_SIZE * Main.scale));
-				tiles.clone()[r][c].setY(y + c * (int) (Tile.TILE_SIZE * Main.scale));
+				tiles[r][c].setX(x + r * (int) (Tile.TILE_SIZE * Main.zoom));
+				tiles.clone()[r][c].setY(y + c * (int) (Tile.TILE_SIZE * Main.zoom));
 				if (DEBUG)
 					System.out.println(r + "," + c + " | " + tiles[r][c].getX() + "," + tiles[r][c].getY());
 			}
@@ -63,8 +63,8 @@ public class Chunk
 			for (int c = 0; c < tileSize; c++)
 			{
 				tiles[r][c] = new Tile();
-				tiles[r][c].setX(x + r * (int) (Tile.TILE_SIZE * Main.scale));
-				tiles.clone()[r][c].setY(y + c * (int) (Tile.TILE_SIZE * Main.scale));
+				tiles[r][c].setX(x + r * (int) (Tile.TILE_SIZE * Main.zoom));
+				tiles.clone()[r][c].setY(y + c * (int) (Tile.TILE_SIZE * Main.zoom));
 				if (DEBUG)
 					System.out.println(r + "," + c + " | " + tiles[r][c].getX() + "," + tiles[r][c].getY());
 			}
@@ -82,8 +82,8 @@ public class Chunk
 		{
 			for (int c = 0; c < tileSize; c++)
 			{
-				tiles[r][c].setX(x + r * (int) (Tile.TILE_SIZE * Main.scale));
-				tiles.clone()[r][c].setY(y + c * (int) (Tile.TILE_SIZE * Main.scale));
+				tiles[r][c].setX(x + r * (int) (Tile.TILE_SIZE * Main.zoom));
+				tiles.clone()[r][c].setY(y + c * (int) (Tile.TILE_SIZE * Main.zoom));
 			}
 		}
 	}
