@@ -50,7 +50,7 @@ public class Main extends Applet implements Runnable, KeyListener
 	{
 		int x = 0;
 		int y = 0;
-		int chunkSize = (int) (Chunk.tileSize * Tile.TILE_SIZE * zoom);
+		int chunkSize =Chunk.tileSize * (int) (Tile.TILE_SIZE * zoom);
 		for (int i = 0; i < width / (Chunk.tileSize * Tile.TILE_SIZE * zoom); i++)
 		{
 			y = 0;
@@ -187,7 +187,7 @@ public class Main extends Applet implements Runnable, KeyListener
 				zoom /= 100;
 				for (Chunk chunk : chunks)
 				{
-					Chunk.chunkSize = (int) (Chunk.tileSize * Tile.TILE_SIZE * zoom);
+					Chunk.chunkSize = Chunk.tileSize * (int) (Tile.TILE_SIZE * zoom);
 					chunk.update();
 				}
 			}
@@ -202,7 +202,7 @@ public class Main extends Applet implements Runnable, KeyListener
 				zoom /= 100;
 				for (Chunk chunk : chunks)
 				{
-					Chunk.chunkSize = (int) (Chunk.tileSize * Tile.TILE_SIZE * zoom);
+					Chunk.chunkSize = Chunk.tileSize * (int) (Tile.TILE_SIZE * zoom);
 					chunk.update();
 				}
 			}
@@ -213,7 +213,7 @@ public class Main extends Applet implements Runnable, KeyListener
 			zoom = 1.0f;
 			for (Chunk chunk : chunks)
 			{
-				Chunk.chunkSize = (int) (Chunk.tileSize * Tile.TILE_SIZE * zoom);
+				Chunk.chunkSize = Chunk.tileSize * (int) (Tile.TILE_SIZE * zoom);
 				chunk.update();
 			}
 		}
